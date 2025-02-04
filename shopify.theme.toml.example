@@ -1,0 +1,5 @@
+[environments.development]
+theme = "${theme_id}"
+store = "${store_name}"
+password  = "${password}"
+ignore = [".vscode", "node_modules", "css/*", "js/*", "tests/*",".gitignore", ".prettierrc.json", ".theme-check.yml", "babel.config.js", "package-lock.json", "package.json", "postcss.config.js", "README.md", "tailwind.config.js", "translations.yml", "webpack.config.js", "yarn.lock"]

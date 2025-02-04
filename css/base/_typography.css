@@ -1,0 +1,55 @@
+/* purgecss start ignore */
+
+.text--x-large {
+  font-size: 52px;
+  line-height: 56px;
+  letter-spacing: 8px;
+}
+
+.text--large {
+  font-size: 38px;
+  line-height: 44px;
+}
+
+.text--medium {
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 6px;
+}
+
+.text--small {
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 5px;
+}
+
+.text--x-small {
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 4px;
+}
+
+.text--xx-small {
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.text--paragraph {
+  font-size: 15px;
+  line-height: 22px;
+}
+
+
+.text--paragraph-small {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+
+.text--pull-quote {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+/* purgecss end ignore */

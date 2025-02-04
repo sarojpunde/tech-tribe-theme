@@ -1,0 +1,7 @@
+:root {
+  font-size: 16px;
+  --zBase: 0;
+  --zAbove: 1;
+  --zBelow: -1;
+  --zHighest: 10;
+}
