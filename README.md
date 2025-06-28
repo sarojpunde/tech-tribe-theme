@@ -1,8 +1,8 @@
-# Shopify Tech Tribe's Theme Documentation
+# Shop Builder Circle's Theme Documentation
 
 ## Getting Started
 
-Welcome to the Shopify Tech Tribe's Theme repository, which uses Shopify's Dawn theme, the latest theme architecture is integrated with organised Javascript, TailwindCSS, Alpine.js, and GraphQL Storefront API connection. This integration optimizes code, enhances maintainability, and improves both the user and developer experiences.
+Welcome to the Shop Builder Circle's Theme repository, which uses Shopify's Dawn theme, the latest theme architecture is integrated with organised Javascript, TailwindCSS, Alpine.js, and GraphQL Storefront API connection. This integration optimizes code, enhances maintainability, and improves both the user and developer experiences.
 
 ## Prerequisites
 
@@ -12,12 +12,12 @@ Welcome to the Shopify Tech Tribe's Theme repository, which uses Shopify's Dawn 
 
 ## Features
 
-- 🎯 **Javascript** for more structured and maintainable development
+- 🎯 **JavaScript** for more structured and maintainable development
 - 🎨 **TailwindCSS** for utility-first styling
 - ⚡ **Alpine.js** for lightweight interactivity
 - 🔄 **GraphQL** for Shopify Storefront API integration
 - 🖼️ **Lazy Loading** for images using vanilla-lazyload
-- 📦 **Webpack** for modern JavaScript bundling
+- ⚡ **Vite** for fast, modern JavaScript bundling and development
 - 🎭 **PostCSS** for CSS processing
 
 ## Repository Structure
@@ -29,7 +29,6 @@ Here is an overview of the repository structure:
 ├── LICENSE.md
 ├── README.md
 ├── assets/
-├── babel.config.js
 ├── config/
 ├── css/
 ├── js/
@@ -44,7 +43,7 @@ Here is an overview of the repository structure:
 ├── tailwind.config.js
 ├── templates/
 ├── translation.yml
-├── webpack.config.js
+├── vite.config.js
 └── yarn.lock
 ```
 
@@ -70,30 +69,30 @@ To begin working with Custom Theme locally, follow these steps:
 
 ### Available Scripts
 
-- `yarn watch:js` - Watch and compile Javascript files
-- `yarn build:js` - Build Javascript for production
-- `yarn watch:css` - Watch and compile CSS files
-- `yarn build:css` - Build CSS for production
+- `yarn watch:js` - Watch and compile JavaScript files using Vite
+- `yarn build:js` - Build JavaScript for production using Vite
+- `yarn watch:css` - Watch and compile CSS files using PostCSS
+- `yarn build:css` - Build CSS for production using PostCSS
 - `yarn watch:theme` - Start Shopify theme development server
-- `yarn push:theme` - Push theme files to Shopify
-- `yarn dev` - Run all development processes at once
-- `yarn test` - Run unit tests
-- `yarn test:coverage` - Generate test coverage report
+- `yarn push:theme` - Push theme files to Shopify development environment
+- `yarn push:theme-staging` - Push theme files to Shopify staging environment
+- `yarn dev` - Run all development processes at once (CSS watch, JS watch, and theme watch)
+- `yarn build` - Build both CSS and JavaScript for production
+- `yarn test` - Run unit tests using Jest
 
 ### Testing
 
 The project uses Jest for testing. To run tests:
 - Unit tests: `yarn test`
-- Coverage report: `yarn test:coverage`
-- Watch mode: `yarn test:watch`
 
 ### Performance Optimization
 
 - Images are automatically lazy loaded using `vanilla-lazyload`
-- JavaScript is split into chunks for optimal loading
-- CSS is purged of unused styles in production using PurgeCSS
+- JavaScript is built and optimized using Vite for fast development and optimal production bundles
+- CSS is processed with PostCSS and optimized with cssnano in production
+- Modern JavaScript features are supported through Vite's built-in transpilation
 - Assets are minified in production builds
-- Modern JavaScript features are transpiled for browser compatibility
+- Fast development server with Hot Module Replacement (HMR) via Vite
 
 ### GIT & GITHUB WORKFLOW
 
@@ -114,13 +113,13 @@ git checkout -b feature-branch
 
 ### LOCAL DEVELOPMENT WORKFLOW
 
-As mentioned earlier, Custom Theme utilizes various packages and libraries like Webpack, Alpine.js, PostCSS, Tailwind, etc. Therefore, you need to run specific commands to compile JS and CSS while working on the codebase.
+As mentioned earlier, Custom Theme utilizes various packages and libraries like Vite, Alpine.js, PostCSS, Tailwind, etc. Therefore, you need to run specific commands to compile JS and CSS while working on the codebase.
 
 To preview your development changes in the development theme, run the following commands and monitor the changes:
 
-- `yarn run watch:js` - Watch Javascript files
-- `yarn run watch:css` - Watch CSS files
-- `yarn run watch:theme` - Watch theme files
+- `yarn watch:js` - Watch JavaScript files with Vite development server
+- `yarn watch:css` - Watch CSS files with PostCSS
+- `yarn watch:theme` - Watch theme files with Shopify CLI
 - `yarn dev` - Run all development commands at once
 
 ### Troubleshooting
@@ -136,6 +135,7 @@ Common issues and solutions:
    - Verify Node.js version matches prerequisites
    - Clear yarn cache: `yarn cache clean`
    - Delete `node_modules` and run `yarn install`
+   - Check Vite configuration in `vite.config.js`
 
 3. **GraphQL errors?**
    - Verify your store access token
@@ -144,8 +144,13 @@ Common issues and solutions:
 
 4. **CSS changes not appearing?**
    - Clear browser cache
-   - Verify TailwindCSS classes are within purge paths
+   - Verify TailwindCSS classes are within content paths in `tailwind.config.js`
    - Check PostCSS build output
+
+5. **JavaScript changes not appearing?**
+   - Ensure Vite development server is running
+   - Check browser console for JavaScript errors
+   - Verify file paths in Vite configuration
 
 ### DEPLOYMENT WORKFLOW
 
@@ -191,6 +196,23 @@ Developers work on the Development and Staging environments, while the content t
 - Use Alpine.js for simple interactivity
 - GraphQL queries are in `js/graphql/queries`
 - Add `lazy` class to images for lazy loading
+- Main JavaScript entry point is `js/index.js` which builds to `assets/theme.min.js`
+- Vite configuration is in `vite.config.js` for customizing the build process
+- PostCSS configuration is in `postcss.config.js` for CSS processing
+
+## Build Process
+
+### JavaScript (Vite)
+- Entry: `js/index.js`
+- Output: `assets/theme.min.js`
+- Features: ES2015+ support, HMR in development, optimized production builds
+- Configuration: `vite.config.js`
+
+### CSS (PostCSS + TailwindCSS)
+- Entry: `css/theme.css`
+- Output: `assets/theme.min.css.liquid`
+- Features: TailwindCSS utilities, autoprefixer, cssnano optimization
+- Configuration: `postcss.config.js` and `tailwind.config.js`
 
 ## Resources
 
@@ -198,9 +220,6 @@ Developers work on the Development and Staging environments, while the content t
 2. [Theme Kit reference](https://shopify.dev/docs/themes/tools/theme-kit/command-reference)
 3. [GitHub integration](https://shopify.dev/docs/themes/tools/github/getting-started)
 4. [Shopify APIs](https://github.com/Shopify/theme-scripts#readme)
-5. [Liquid cheatsheet](https://www.shopify.com/partners/shopify-cheat-sheet)
-6. [TypeScript Documentation](https://www.typescriptlang.org/docs/)
-7. [TailwindCSS Documentation](https://tailwindcss.com/docs)
-8. [Alpine.js Documentation](https://alpinejs.dev/docs)
-9. [Shopify Blogs](https://shopify.engineering/)
-10. [GraphQL Storefront API](https://shopify.dev/docs/api/storefront)
+5. [Vite documentation](https://vitejs.dev/)
+6. [TailwindCSS documentation](https://tailwindcss.com/)
+7. [Alpine.js documentation](https://alpinejs.dev/)

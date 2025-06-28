@@ -1,17 +1,17 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: "jit", // Enable JIT mode
-  content: ["./src/**/*.{js,css,liquid}"],
+  content: ['./**/*.liquid'],
   theme: {
     screens: {
-      xxs: "420px",
-      xs: "576px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1600px",
+      'xxs': '421px',
+      'xs': '577px',
+      'sm': '641px',
+      'md': '769px',
+      'lg': '1025px',
+      'xl': '1281px',
+      '2xl': '1537px',
     },
     extend: {},
   },
-  plugins: [],
-};
+  plugins: []
+}
